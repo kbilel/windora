@@ -1370,6 +1370,43 @@
       font-family: var(--font-display);
     }
 
+    .project-controls {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+
+    .project-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      min-width: 92px;
+      min-height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.82rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.2s var(--ease-out), border-color 0.2s, background 0.2s;
+    }
+
+    .project-nav-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(14, 165, 233, 0.48);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .project-nav-btn:active {
+      transform: translateY(0);
+    }
+
     @media (max-width: 560px) {
       .project-pair-showcase {
         gap: 0.5rem;
@@ -1388,6 +1425,10 @@
         right: 0.6rem;
         bottom: 0.6rem;
         font-size: 0.72rem;
+      }
+
+      .project-controls {
+        justify-content: flex-start;
       }
     }
 
@@ -2046,7 +2087,7 @@
         </div>
         <div class="hero-visual">
           <div class="hero-proof" id="work">
-            <p class="proof-eyebrow">Proof first — see the difference</p>
+            <p class="proof-eyebrow">Examples from our work — see the difference</p>
             <p class="proof-headline"><em>Door, window &amp; glass</em> repair and installation that protects the space</p>
             <div class="compare compare--hero project-pair-showcase" id="projectShowcase" role="img" aria-label="Automatic before and after project examples.">
               <article class="project-photo-card before" id="beforeCard">
@@ -2061,11 +2102,15 @@
               </article>
             </div>
             <div class="project-pair-meta" aria-live="polite">
-              <strong id="projectTitle">Mirror wall repair</strong>
-              <span id="projectCounter">Project 1 of 2</span>
+              <strong id="projectTitle">Storefront glass repair</strong>
+              <span id="projectCounter">Work 1 of 8</span>
             </div>
-            <p class="compare-hint proof-compare-hint">Auto-preview — each project shows a before photo on the left and the repaired or installed result on the right.</p>
-            <p class="proof-pitch">From damaged glass to new doors and windows, Windora focuses on secure installs, precise repairs, and clear communication from the first call.</p>
+            <div class="project-controls" aria-label="Browse work examples">
+              <button type="button" class="project-nav-btn" id="projectPrev" aria-label="Show previous work example">← Back</button>
+              <button type="button" class="project-nav-btn" id="projectNext" aria-label="Show next work example">Next →</button>
+            </div>
+            <p class="compare-hint proof-compare-hint">Auto-preview of selected examples. Use Next or Back to browse more before/after work.</p>
+            <p class="proof-pitch">These are examples of Windora projects, not the full list of work completed. From damaged glass to door hardware and entry repairs, we focus on secure installs, precise repairs, and clear communication from the first call.</p>
             <div class="proof-cta-row">
               <a href="#services" class="btn btn-primary">View Services</a>
               <a href="#emergency" class="btn btn-outline">Emergency Board-Up</a>
@@ -2511,6 +2556,8 @@
       var afterCaption = document.getElementById("afterCaption");
       var projectTitle = document.getElementById("projectTitle");
       var projectCounter = document.getElementById("projectCounter");
+      var projectPrev = document.getElementById("projectPrev");
+      var projectNext = document.getElementById("projectNext");
       var projectWorks = [
         {
           title: "Storefront glass repair",
@@ -2617,13 +2664,35 @@
       }
 
       var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!reduceMotion && projectSlides.length > 1) {
-        var projectSlideIndex = 0;
-        window.setInterval(function () {
-          projectSlideIndex = (projectSlideIndex + 1) % projectSlides.length;
-          showProjectSlide(projectSlideIndex);
+      var projectSlideIndex = 0;
+      var projectTimer;
+
+      function goToProjectSlide(direction) {
+        projectSlideIndex = (projectSlideIndex + direction + projectSlides.length) % projectSlides.length;
+        showProjectSlide(projectSlideIndex);
+      }
+
+      function startProjectAutoPlay() {
+        if (reduceMotion || projectSlides.length <= 1) return;
+        window.clearInterval(projectTimer);
+        projectTimer = window.setInterval(function () {
+          goToProjectSlide(1);
         }, 4200);
       }
+
+      if (projectPrev && projectNext) {
+        projectPrev.addEventListener("click", function () {
+          goToProjectSlide(-1);
+          startProjectAutoPlay();
+        });
+
+        projectNext.addEventListener("click", function () {
+          goToProjectSlide(1);
+          startProjectAutoPlay();
+        });
+      }
+
+      startProjectAutoPlay();
 
       var boardupShots = Array.from(document.querySelectorAll(".boardup-shot"));
       var boardupDots = Array.from(document.querySelectorAll(".boardup-dot"));
