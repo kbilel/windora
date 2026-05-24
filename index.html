@@ -152,7 +152,7 @@
       --radius-sm: 12px;
       --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
       --font-body: "Instrument Sans", system-ui, sans-serif;
-      --header-h: 84px;
+      --header-h: 96px;
       --mobile-cta-h: 64px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -268,7 +268,7 @@
     }
 
     .site-header .logo {
-      min-width: 280px;
+      min-width: 340px;
     }
 
     .logo span {
@@ -310,8 +310,8 @@
     }
 
     .logo-image {
-      width: 280px;
-      height: 84px;
+      width: 340px;
+      height: 96px;
       display: block;
       border-radius: 0;
       object-fit: contain;
@@ -330,8 +330,8 @@
 
     @media (max-width: 420px) {
       .logo-image {
-        width: 205px;
-        height: 68px;
+        width: 235px;
+        height: 76px;
       }
     }
 
@@ -1187,23 +1187,48 @@
     .compare-layer {
       position: absolute;
       inset: 0;
-      background-size: cover;
-      background-position: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.35rem;
+      padding: 0.35rem;
     }
 
     .compare-before {
       background-color: #94a3b8;
-      background-image:
-        linear-gradient(135deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.35)),
-        url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80");
     }
 
     .compare-after {
       background-color: #64748b;
-      background-image:
-        linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(15, 23, 42, 0.2)),
-        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80");
       clip-path: inset(0 0 0 50%);
+    }
+
+    .compare-photo {
+      position: relative;
+      min-width: 0;
+      border-radius: calc(var(--radius) - 6px);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .compare-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.35));
+    }
+
+    .compare-photo span {
+      position: absolute;
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 0.7rem;
+      z-index: 1;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
     }
 
     .compare-label {
@@ -1269,7 +1294,7 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      cursor: ew-resize;
+      pointer-events: none;
       z-index: 4;
       margin: 0;
     }
@@ -1279,6 +1304,114 @@
       font-size: 0.875rem;
       color: var(--color-muted);
       margin-top: 1rem;
+    }
+
+    .project-pair-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      padding: 0.75rem;
+      aspect-ratio: 16 / 10;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .project-photo-card {
+      position: relative;
+      min-width: 0;
+      height: 100%;
+      border-radius: calc(var(--radius) - 8px);
+      overflow: hidden;
+      background: rgba(2, 6, 23, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .project-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
+    }
+
+    .project-photo-card.is-changing img {
+      opacity: 0;
+      transform: scale(1.02);
+    }
+
+    .project-photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.74));
+      pointer-events: none;
+    }
+
+    .project-photo-label {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 1;
+      padding: 0.34rem 0.72rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .project-photo-card.after .project-photo-label {
+      background: rgba(34, 197, 94, 0.88);
+    }
+
+    .project-photo-caption {
+      position: absolute;
+      left: 0.85rem;
+      right: 0.85rem;
+      bottom: 0.85rem;
+      z-index: 1;
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.48);
+    }
+
+    .project-pair-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.85rem;
+      color: rgba(226, 232, 240, 0.78);
+      font-size: 0.85rem;
+    }
+
+    .project-pair-meta strong {
+      color: #fff;
+      font-family: var(--font-display);
+    }
+
+    @media (max-width: 560px) {
+      .project-pair-showcase {
+        gap: 0.5rem;
+        padding: 0.5rem;
+        aspect-ratio: 4 / 3;
+      }
+
+      .project-photo-label {
+        top: 0.5rem;
+        left: 0.5rem;
+        font-size: 0.64rem;
+      }
+
+      .project-photo-caption {
+        left: 0.6rem;
+        right: 0.6rem;
+        bottom: 0.6rem;
+        font-size: 0.72rem;
+      }
     }
 
     .proof-compare-hint {
@@ -2127,7 +2260,7 @@
             Windora Entry Solutions · Doors, windows &amp; 24/7 protection · Virginia
           </p>
           <h1 id="hero-title">Secure, repair, and upgrade every entry point with confidence.</h1>
-          <p class="lead"><strong>Windora Entry Solutions</strong> helps homeowners and businesses with door installation, window installation, glass repair, emergency board-up, carpentry, and reliable home repair—fast, clean, and built to last.</p>
+          <p class="lead"><strong>Windora Entry Solutions</strong> helps homeowners and businesses with door installation, window installation, glass repair, emergency board-up, carpentry, and reliable home repair—fast, professional, and built to last.</p>
           <p class="quote-methods-title">Get a free quote your way:</p>
           <div class="quick-contact-grid" aria-label="Choose how to get a free quote from Windora">
             <a href="tel:+12272496106" class="quick-contact-card phone">
@@ -2167,24 +2300,25 @@
         <div class="hero-visual">
           <div class="hero-proof" id="work">
             <p class="proof-eyebrow">Proof first — see the difference</p>
-            <p class="proof-headline">Clean <em>door, window &amp; glass</em> work that changes the space</p>
-            <div class="compare compare--hero" id="compareSlider" role="img" aria-label="Before and after project comparison. Drag to reveal.">
-              <div class="compare-layer compare-before" aria-hidden="true"></div>
-              <div class="compare-layer compare-after" id="compareAfter" aria-hidden="true"></div>
-              <span class="compare-label before">Before</span>
-              <span class="compare-label after">After</span>
-              <div class="compare-handle" id="compareHandle" style="left: 50%">
-                <div class="compare-knob" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <circle cx="9" cy="8" r="1.5"/><circle cx="15" cy="8" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="16" r="1.5"/><circle cx="15" cy="16" r="1.5"/>
-                  </svg>
-                </div>
-              </div>
-              <label class="sr-only" for="compareRange">Slide to compare before and after</label>
-              <input type="range" id="compareRange" min="0" max="100" value="50" />
+            <p class="proof-headline"><em>Door, window &amp; glass</em> repair and installation that protects the space</p>
+            <div class="compare compare--hero project-pair-showcase" id="projectShowcase" role="img" aria-label="Automatic before and after project examples.">
+              <article class="project-photo-card before" id="beforeCard">
+                <span class="project-photo-label">Before</span>
+                <img id="beforePhoto" src="beforeAfter/work1/1000072250.jpg" alt="Before storefront glass repair" width="1024" height="768" loading="eager" />
+                <span class="project-photo-caption" id="beforeCaption">Broken storefront glass</span>
+              </article>
+              <article class="project-photo-card after" id="afterCard">
+                <span class="project-photo-label">After</span>
+                <img id="afterPhoto" src="beforeAfter/work1/1000072251.jpg" alt="After storefront glass repair" width="1024" height="768" loading="eager" />
+                <span class="project-photo-caption" id="afterCaption">Storefront secured and restored</span>
+              </article>
             </div>
-            <p class="compare-hint proof-compare-hint">Drag the slider — show visitors what a safer, cleaner entry can feel like.</p>
-            <p class="proof-pitch">From damaged glass to new doors and windows, Windora focuses on secure installs, tidy repairs, and clear communication from the first call.</p>
+            <div class="project-pair-meta" aria-live="polite">
+              <strong id="projectTitle">Mirror wall repair</strong>
+              <span id="projectCounter">Project 1 of 2</span>
+            </div>
+            <p class="compare-hint proof-compare-hint">Auto-preview — each project shows a before photo on the left and the repaired or installed result on the right.</p>
+            <p class="proof-pitch">From damaged glass to new doors and windows, Windora focuses on secure installs, precise repairs, and clear communication from the first call.</p>
             <div class="proof-cta-row">
               <a href="#services" class="btn btn-primary">View Services</a>
               <a href="#emergency" class="btn btn-outline">Emergency Board-Up</a>
@@ -2199,7 +2333,7 @@
       <div class="container">
         <p class="section-label reveal">Watch</p>
         <h2 class="section-title reveal" id="video-title">See Windora’s work in motion</h2>
-        <p class="section-desc reveal">A quick look at the kind of clean, practical entry work customers want to see before they call—doors, windows, glass, and repairs handled with care.</p>
+        <p class="section-desc reveal">A quick look at practical repair and installation work customers want to see before they call—doors, windows, glass, and entry projects handled with care.</p>
 
         <div class="video-layout has-two">
           <div class="video-card reveal">
@@ -2255,14 +2389,14 @@
       <div class="container">
         <p class="section-label reveal">What we do</p>
         <h2 class="section-title reveal" id="services-title">Entry solutions for homes and businesses</h2>
-        <p class="section-desc reveal">Focused door, window, glass, board-up, carpentry, and repair services designed to make your property safer, cleaner, and easier to use.</p>
+        <p class="section-desc reveal">Focused door, window, glass, board-up, carpentry, and repair services designed to make your property safer, stronger, and easier to use.</p>
         <div class="services-grid">
           <article class="service-card featured-service reveal">
             <div class="service-icon" aria-hidden="true">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V3h11v18"/><path d="M15 8h5v13"/><path d="M10 12h.01"/><path d="M2 21h20"/></svg>
             </div>
             <h3>Door installation</h3>
-            <p>Entry doors, interior doors, storm doors, hardware, trim, and adjustments installed with a clean finish.</p>
+            <p>Entry doors, interior doors, storm doors, hardware, trim, and adjustments installed with a precise finish.</p>
           </article>
           <article class="service-card featured-service reveal">
             <div class="service-icon" aria-hidden="true">
@@ -2297,7 +2431,7 @@
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M7 21V7l5-4 5 4v14"/><path d="M10 14h4"/></svg>
             </div>
             <h3>Carpentry</h3>
-            <p>Trim, framing repairs, wood rot fixes, custom adjustments, and clean finish carpentry.</p>
+            <p>Trim, framing repairs, wood rot fixes, custom adjustments, and detailed finish carpentry.</p>
           </article>
           <article class="service-card reveal">
             <div class="service-icon" aria-hidden="true">
@@ -2371,7 +2505,7 @@
           </article>
           <article class="faq-item">
             <h3>Can you install both doors and windows?</h3>
-            <p>Yes. We handle door installation, window installation, replacement support, trim, hardware, sealing, and related carpentry so the finished entry looks clean and works properly.</p>
+            <p>Yes. We handle door installation, window installation, replacement support, trim, hardware, sealing, and related carpentry so the finished entry looks professional and works properly.</p>
           </article>
           <article class="faq-item">
             <h3>Do you work with commercial properties?</h3>
@@ -2430,7 +2564,7 @@
             <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
             <div>
               <h3>Respect for your space</h3>
-              <p>We protect floors and furniture and clean up before we leave.</p>
+              <p>We protect floors and furniture and leave the work area tidy before we leave.</p>
             </div>
           </div>
         </div>
@@ -2444,7 +2578,7 @@
           <p class="section-label reveal">About us</p>
           <h2 class="section-title reveal" id="about-title">Entry work that feels professional from the first call</h2>
           <p class="reveal"><strong>Windora Entry Solutions</strong> focuses on the parts of a property customers notice and rely on every day: doors that close right, windows that protect the space, glass that is safe, and emergency board-up when the property needs immediate security.</p>
-          <p class="reveal">The goal is simple: respond clearly, protect the work area, explain options, and leave every door, window, or repair looking clean and functioning the way it should.</p>
+          <p class="reveal">The goal is simple: respond clearly, protect the work area, explain options, and leave every door, window, or repair looking professional and functioning the way it should.</p>
           <p class="reveal"><strong>Serving Virginia</strong> and surrounding communities with residential, commercial, and emergency service options.</p>
         </div>
       </div>
@@ -2454,7 +2588,7 @@
       <div class="container">
         <p class="section-label reveal">Testimonials</p>
         <h2 class="section-title reveal" id="reviews-title">What neighbors say</h2>
-        <p class="section-desc reveal">Realistic examples of the kind of feedback entry-service customers care about: speed, clarity, security, and clean results.</p>
+        <p class="section-desc reveal">Realistic examples of the kind of feedback entry-service customers care about: speed, clarity, security, and durable results.</p>
         <div class="testimonial-grid">
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
@@ -2482,7 +2616,7 @@
           </article>
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“Great carpentry and trim work around our new windows. The measurements were clean and the finish matched the house beautifully.”</blockquote>
+            <blockquote>“Great carpentry and trim work around our new windows. The measurements were precise and the finish matched the house beautifully.”</blockquote>
             <div class="testimonial-meta">
               <strong>Marcus D.</strong>
               <span>Townhouse owner</span>
@@ -2690,58 +2824,101 @@
         revealObserver.observe(el);
       });
 
-      // Before / after slider
-      var compare = document.getElementById("compareSlider");
-      var compareAfter = document.getElementById("compareAfter");
-      var compareHandle = document.getElementById("compareHandle");
-      var compareRange = document.getElementById("compareRange");
-
-      function setComparePct(pct) {
-        var p = Math.max(0, Math.min(100, pct));
-        compareAfter.style.clipPath = "inset(0 0 0 " + p + "%)";
-        compareHandle.style.left = p + "%";
-        compareRange.value = String(Math.round(p));
-      }
-
-      compareRange.addEventListener("input", function () {
-        setComparePct(Number(compareRange.value));
+      // Before / after project carousel. Each work can have any number of before or after photos.
+      var beforeCard = document.getElementById("beforeCard");
+      var afterCard = document.getElementById("afterCard");
+      var beforePhoto = document.getElementById("beforePhoto");
+      var afterPhoto = document.getElementById("afterPhoto");
+      var beforeCaption = document.getElementById("beforeCaption");
+      var afterCaption = document.getElementById("afterCaption");
+      var projectTitle = document.getElementById("projectTitle");
+      var projectCounter = document.getElementById("projectCounter");
+      var projectWorks = [
+        {
+          title: "Storefront glass repair",
+          before: [
+            { src: "beforeAfter/work1/1000072250.jpg", caption: "Broken storefront glass" }
+          ],
+          after: [
+            { src: "beforeAfter/work1/1000072251.jpg", caption: "Storefront secured and restored" }
+          ]
+        },
+        {
+          title: "Mirror wall repair",
+          before: [
+            { src: "beforeAfter/work2/1000072247.jpg", caption: "Mirror wall before repair" }
+          ],
+          after: [
+            { src: "beforeAfter/work2/1000072248.jpg", caption: "Mirror wall repair in progress" }
+          ]
+        },
+        {
+          title: "Outdoor fixture repair",
+          before: [
+            { src: "beforeAfter/work3/1000072254.jpg", caption: "Planter box before repair" }
+          ],
+          after: [
+            { src: "beforeAfter/work3/1000072255.jpg", caption: "Planter boxes restored" }
+          ]
+        },
+        {
+          title: "Entry threshold repair",
+          before: [
+            { src: "beforeAfter/work4/1000072256.jpg", caption: "Damaged entry frame before repair" }
+          ],
+          after: [
+            { src: "beforeAfter/work4/1000072252.jpg", caption: "Entry threshold repaired" }
+          ]
+        },
+        {
+          title: "Interior panel repair",
+          before: [
+            { src: "beforeAfter/work5/1000072258.jpg", caption: "Panel repair in progress" }
+          ],
+          after: [
+            { src: "beforeAfter/work5/1000072257.jpg", caption: "Interior panel restored" }
+          ]
+        }
+      ];
+      var projectSlides = projectWorks.flatMap(function (project, projectIndex) {
+        var slideCount = Math.max(project.before.length, project.after.length);
+        return Array.from({ length: slideCount }, function (_, photoIndex) {
+          return {
+            title: project.title,
+            projectIndex: projectIndex,
+            before: project.before[photoIndex % project.before.length],
+            after: project.after[photoIndex % project.after.length]
+          };
+        });
       });
 
-      var dragging = false;
-      function clientXFromEvent(e) {
-        return e.touches ? e.touches[0].clientX : e.clientX;
-      }
-      function onDragMove(e) {
-        if (!dragging) return;
-        var rect = compare.getBoundingClientRect();
-        var x = clientXFromEvent(e) - rect.left;
-        var pct = (x / rect.width) * 100;
-        setComparePct(pct);
-        e.preventDefault();
-      }
-      function endDrag() {
-        dragging = false;
-        document.removeEventListener("mousemove", onDragMove);
-        document.removeEventListener("mouseup", endDrag);
-        document.removeEventListener("touchmove", onDragMove);
-        document.removeEventListener("touchend", endDrag);
-      }
-      compare.addEventListener("mousedown", function (e) {
-        if (e.target === compareRange) return;
-        dragging = true;
-        document.addEventListener("mousemove", onDragMove);
-        document.addEventListener("mouseup", endDrag);
-        onDragMove(e);
-      });
-      compare.addEventListener("touchstart", function (e) {
-        if (e.target === compareRange) return;
-        dragging = true;
-        document.addEventListener("touchmove", onDragMove, { passive: false });
-        document.addEventListener("touchend", endDrag);
-        onDragMove(e);
-      });
+      function showProjectSlide(index) {
+        var slide = projectSlides[index % projectSlides.length];
+        beforeCard.classList.add("is-changing");
+        afterCard.classList.add("is-changing");
 
-      setComparePct(50);
+        window.setTimeout(function () {
+          beforePhoto.src = slide.before.src;
+          beforePhoto.alt = slide.before.caption;
+          afterPhoto.src = slide.after.src;
+          afterPhoto.alt = slide.after.caption;
+          beforeCaption.textContent = slide.before.caption;
+          afterCaption.textContent = slide.after.caption;
+          projectTitle.textContent = slide.title;
+          projectCounter.textContent = "Work " + (slide.projectIndex + 1) + " of " + projectWorks.length;
+          beforeCard.classList.remove("is-changing");
+          afterCard.classList.remove("is-changing");
+        }, 220);
+      }
+
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduceMotion && projectSlides.length > 1) {
+        var projectSlideIndex = 0;
+        window.setInterval(function () {
+          projectSlideIndex = (projectSlideIndex + 1) % projectSlides.length;
+          showProjectSlide(projectSlideIndex);
+        }, 4200);
+      }
 
       // file:// cannot send Referer → YouTube iframe shows Error 153. Use thumbnail + link instead; keep iframe on http(s).
       if (window.location.protocol === "file:") {
