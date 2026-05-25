@@ -62,7 +62,7 @@ Value: 185.199.111.153
 Create or forward this mailbox before launch so quote requests do not bounce:
 
 ```txt
-info@windoraentrysolutions.com
+contact@windoraentrysolutions.com
 ```
 
 Add a more exact city or county later if you want stronger local SEO than statewide Virginia targeting.
