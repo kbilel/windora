@@ -7,7 +7,7 @@
   <meta name="description" content="Windora Entry Solutions provides door installation, window installation, window repair, glass repair, 24/7 emergency board-up, carpentry, commercial services, and home repair in Virginia. Call for a free quote." />
   <meta name="keywords" content="door installation, window installation, window repair, door repair, glass repair, emergency board-up, commercial services, carpentry, home repair, Virginia, Windora Entry Solutions" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#f8fafc" />
   <meta name="author" content="Windora Entry Solutions" />
   <meta name="geo.region" content="US" />
   <meta name="geo.placename" content="Virginia" />
@@ -711,6 +711,9 @@
     /* Proof-first: before/after lives in the hero */
     .hero-proof {
       width: 100%;
+      padding: clamp(1rem, 2.4vw, 1.35rem);
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
     }
 
     .proof-eyebrow {
@@ -729,13 +732,62 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.25;
-      margin: 0 0 1rem;
+      margin: 0 0 1.05rem;
       color: #fff;
+      max-width: 18ch;
     }
 
     .proof-headline em {
       font-style: normal;
       color: var(--color-accent);
+    }
+
+    .proof-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: -0.15rem 0 1.15rem;
+    }
+
+    .proof-keywords span {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.32rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(14, 165, 233, 0.12);
+      color: rgba(248, 250, 252, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    @media (min-width: 640px) {
+      .proof-headline {
+        max-width: 24ch;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero-proof {
+        padding: 0.9rem;
+        border-radius: var(--radius);
+      }
+
+      .proof-headline {
+        font-size: 1.28rem;
+        max-width: none;
+      }
+
+      .proof-keywords {
+        gap: 0.4rem;
+      }
+
+      .proof-keywords span {
+        padding: 0.28rem 0.54rem;
+        font-size: 0.68rem;
+      }
     }
 
     .compare--hero {
@@ -1306,7 +1358,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
+      transition: opacity 0.45s var(--ease-out), transform 0.65s var(--ease-out);
     }
 
     .project-photo-card.is-changing img {
@@ -1640,7 +1692,7 @@
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
-      padding: 1.75rem;
+      padding: 1.55rem;
       display: flex;
       flex-direction: column;
       backdrop-filter: blur(12px);
@@ -1656,23 +1708,30 @@
       color: #f59e0b;
       font-size: 1rem;
       letter-spacing: 2px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
     }
 
     .testimonial-card blockquote {
-      margin: 0 0 1.25rem;
-      font-size: 0.9375rem;
-      color: var(--color-primary-soft);
+      margin: 0 0 1.35rem;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      font-weight: 500;
+      line-height: 1.62;
+      color: var(--color-primary);
       flex: 1;
     }
 
     .testimonial-meta {
       font-size: 0.875rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(15, 23, 42, 0.1);
     }
 
     .testimonial-meta strong {
       display: block;
       font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--color-primary);
     }
 
     .testimonial-meta span {
@@ -2001,6 +2060,345 @@
       max-width: 280px;
     }
 
+    /* ---------- Light theme refresh ---------- */
+    :root {
+      --color-bg: #f8fafc;
+      --color-surface: rgba(255, 255, 255, 0.86);
+      --color-primary: #0f172a;
+      --color-primary-soft: #dbeafe;
+      --color-muted: #475569;
+      --color-border: rgba(15, 23, 42, 0.12);
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 16px 44px rgba(15, 23, 42, 0.12);
+      --shadow-lg: 0 28px 80px rgba(15, 23, 42, 0.16);
+    }
+
+    body {
+      color: var(--color-primary);
+      background:
+        radial-gradient(ellipse 80% 55% at 84% 4%, rgba(14, 165, 233, 0.16), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 8% 24%, rgba(34, 197, 94, 0.12), transparent 58%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 46%, #eef6ff 100%);
+    }
+
+    .site-header {
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom-color: rgba(15, 23, 42, 0.08);
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .site-header:not(.is-scrolled) .nav-desktop a,
+    .nav-desktop a {
+      color: rgba(15, 23, 42, 0.72);
+    }
+
+    .site-header:not(.is-scrolled) .nav-desktop a:hover,
+    .nav-desktop a:hover {
+      color: #0f172a;
+    }
+
+    .site-header:not(.is-scrolled) .btn-ghost,
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.06);
+      color: #0f172a;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.1);
+    }
+
+    .btn-outline {
+      border-color: rgba(15, 23, 42, 0.18);
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(14, 165, 233, 0.42);
+      background: rgba(14, 165, 233, 0.08);
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 80% 60% at 82% 20%, rgba(14, 165, 233, 0.2), transparent 55%),
+        radial-gradient(ellipse 65% 55% at 12% 76%, rgba(34, 197, 94, 0.14), transparent 58%),
+        linear-gradient(165deg, #ffffff 0%, #f8fafc 48%, #eaf5ff 100%);
+    }
+
+    .hero-bg::before {
+      background:
+        radial-gradient(circle at 72% 28%, rgba(14, 165, 233, 0.22), transparent 18%),
+        radial-gradient(circle at 25% 70%, rgba(34, 197, 94, 0.14), transparent 20%),
+        radial-gradient(circle at 52% 92%, rgba(99, 102, 241, 0.12), transparent 16%);
+      opacity: 0.7;
+    }
+
+    .hero-bg::after {
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230f172a' fill-opacity='0.045'%3E%3Ccircle cx='16' cy='16' r='1'/%3E%3Ccircle cx='56' cy='44' r='1'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.75;
+    }
+
+    .badge,
+    .quick-contact-card,
+    .hero-proof,
+    .service-card,
+    .service-area-card,
+    .faq-item,
+    .why-item,
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.86);
+      border-color: rgba(15, 23, 42, 0.1);
+      color: #0f172a;
+      box-shadow: var(--shadow-md);
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.09);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.1);
+    }
+
+    .testimonial-card blockquote {
+      color: #1e293b;
+    }
+
+    .testimonial-meta strong {
+      color: #0f172a;
+    }
+
+    .badge {
+      color: rgba(15, 23, 42, 0.82);
+    }
+
+    .proof-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.36rem 0.72rem;
+      border-radius: 999px;
+      color: #0369a1;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.18);
+      letter-spacing: 0.08em;
+    }
+
+    .proof-keywords span {
+      color: #0f172a;
+      background: rgba(14, 165, 233, 0.08);
+      border-color: rgba(14, 165, 233, 0.16);
+    }
+
+    .proof-keywords span:nth-child(2n) {
+      background: rgba(34, 197, 94, 0.09);
+      border-color: rgba(34, 197, 94, 0.16);
+    }
+
+    .hero h1,
+    .quote-methods-title,
+    .quick-contact-card strong,
+    .hero-stats div strong,
+    .proof-headline,
+    .project-pair-meta strong,
+    .service-card h3,
+    .faq-item h3,
+    .why-item h3,
+    .testimonial-meta strong,
+    .section-title,
+    .footer-title {
+      color: #0f172a;
+    }
+
+    .hero .lead,
+    .quick-contact-card span,
+    .hero-stats div span,
+    .proof-pitch,
+    .proof-compare-hint,
+    .project-pair-meta,
+    .section-desc,
+    .service-card p,
+    .service-area-card p,
+    .faq-item p,
+    .why-item p,
+    .testimonial-meta span,
+    .about-text p {
+      color: #475569;
+    }
+
+    .hero .btn-outline,
+    .proof-cta-row .btn-outline {
+      border-color: rgba(15, 23, 42, 0.16);
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .hero .btn-outline:hover,
+    .proof-cta-row .btn-outline:hover {
+      border-color: rgba(14, 165, 233, 0.42);
+      background: rgba(14, 165, 233, 0.08);
+    }
+
+    section,
+    #service-area,
+    #reviews {
+      background:
+        radial-gradient(ellipse 64% 42% at 88% 8%, rgba(14, 165, 233, 0.08), transparent 58%),
+        radial-gradient(ellipse 60% 42% at 8% 88%, rgba(34, 197, 94, 0.08), transparent 58%),
+        var(--color-bg);
+    }
+
+    #services,
+    #about {
+      background:
+        radial-gradient(ellipse 72% 50% at 14% 16%, rgba(34, 197, 94, 0.08), transparent 58%),
+        linear-gradient(180deg, #ffffff 0%, #f1f8ff 100%);
+    }
+
+    .service-card.featured-service {
+      background:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.11), rgba(34, 197, 94, 0.09)),
+        rgba(255, 255, 255, 0.92);
+      border-color: rgba(14, 165, 233, 0.2);
+    }
+
+    .emergency-card {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(14, 165, 233, 0.18), transparent 38%),
+        linear-gradient(135deg, #ffffff 0%, #eefcf4 46%, #eaf5ff 100%);
+      color: #0f172a;
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .emergency-card .section-label {
+      color: #15803d;
+    }
+
+    .emergency-card .section-title,
+    .emergency-card .section-desc,
+    .emergency-points li,
+    .emergency-panel {
+      color: #0f172a;
+    }
+
+    .emergency-card .section-desc,
+    .emergency-panel p {
+      color: #475569;
+    }
+
+    .emergency-panel {
+      background: rgba(255, 255, 255, 0.82);
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .project-pair-showcase {
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .project-nav-btn {
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.86);
+      border-color: rgba(15, 23, 42, 0.14);
+    }
+
+    .project-nav-btn:hover {
+      background: rgba(14, 165, 233, 0.08);
+    }
+
+    .local-keywords span {
+      background: rgba(14, 165, 233, 0.08);
+      border-color: rgba(14, 165, 233, 0.14);
+      color: #0f172a;
+    }
+
+    .about-visual,
+    .boardup-gallery {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-card {
+      background:
+        radial-gradient(circle at 82% 0%, rgba(14, 165, 233, 0.18), transparent 38%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(238, 246, 255, 0.92) 100%);
+      color: #0f172a;
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .contact-card .section-label,
+    .contact-card .section-title,
+    .contact-card .section-title strong,
+    .contact-list,
+    .contact-list a {
+      color: #0f172a;
+    }
+
+    .contact-card .section-desc {
+      color: #475569;
+    }
+
+    .contact-actions .btn-primary {
+      background: linear-gradient(135deg, var(--color-accent-soft), var(--color-accent));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.24);
+    }
+
+    .contact-actions .btn-outline {
+      border-color: rgba(15, 23, 42, 0.18);
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .quote-form {
+      background: rgba(255, 255, 255, 0.88);
+      color: #0f172a;
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .form-field label,
+    .form-note {
+      color: #475569;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      color: #0f172a;
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.14);
+    }
+
+    .site-footer {
+      background:
+        radial-gradient(ellipse 70% 46% at 86% 0%, rgba(14, 165, 233, 0.12), transparent 58%),
+        #eef6ff;
+      color: #475569;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .site-footer .logo,
+    .footer-nav a {
+      color: #0f172a;
+    }
+
+    .footer-nav a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .mobile-call-bar {
+      background: rgba(255, 255, 255, 0.92);
+      border-top-color: rgba(15, 23, 42, 0.1);
+    }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -2019,7 +2417,7 @@
   <header class="site-header" id="siteHeader" role="banner">
     <div class="container header-inner">
       <a href="#" class="logo" aria-label="Windora Entry Solutions home">
-        <img src="windora-logo-transparent.png" alt="Windora Entry Solutions" class="logo-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+        <img src="windora-logo-light.png" alt="Windora Entry Solutions" class="logo-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
         <span class="logo-fallback" hidden>Windora Entry Solutions</span>
       </a>
       <nav class="nav-desktop" aria-label="Primary">
@@ -2087,8 +2485,16 @@
         </div>
         <div class="hero-visual">
           <div class="hero-proof" id="work">
-            <p class="proof-eyebrow">Examples from our work — see the difference</p>
-            <p class="proof-headline"><em>Door, window &amp; glass</em> repair and installation that protects the space</p>
+            <p class="proof-eyebrow">Repair &amp; installation work examples</p>
+            <p class="proof-headline">Before/after results for <em>doors, windows, glass</em> and handyman repairs</p>
+            <div class="proof-keywords" aria-label="Windora repair and installation services">
+              <span>Door repair</span>
+              <span>Window installation</span>
+              <span>Glass replacement</span>
+              <span>Handyman repairs</span>
+              <span>Carpentry</span>
+              <span>Emergency board-up</span>
+            </div>
             <div class="compare compare--hero project-pair-showcase" id="projectShowcase" role="img" aria-label="Automatic before and after project examples.">
               <article class="project-photo-card before" id="beforeCard">
                 <span class="project-photo-label">Before</span>
@@ -2342,35 +2748,35 @@
       <div class="container">
         <p class="section-label reveal">Testimonials</p>
         <h2 class="section-title reveal" id="reviews-title">What neighbors say</h2>
-        <p class="section-desc reveal">Realistic examples of the kind of feedback entry-service customers care about: speed, clarity, security, and durable results.</p>
+        <p class="section-desc reveal">The details people remember most: fast response, clear options, secure repairs, and work that looks finished.</p>
         <div class="testimonial-grid">
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“Windora replaced our front door and adjusted the frame perfectly. The door closes smoothly, looks great, and the work area was spotless.”</blockquote>
+            <blockquote>“Our front door was sticking and letting air through. Windora adjusted the frame, replaced the hardware, and made sure it closed smoothly before leaving.”</blockquote>
             <div class="testimonial-meta">
-              <strong>Rachel M.</strong>
+              <strong>Karen M.</strong>
               <span>Homeowner, Virginia</span>
             </div>
           </article>
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“We had a cracked window and needed help fast. They secured it, explained the repair options, and made the whole process easy.”</blockquote>
+            <blockquote>“I sent photos of a cracked window by WhatsApp and got a clear answer quickly. They explained the repair options and kept the area safe.”</blockquote>
             <div class="testimonial-meta">
-              <strong>James T.</strong>
-              <span>Local resident</span>
+              <strong>Daniel R.</strong>
+              <span>Local homeowner</span>
             </div>
           </article>
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“Professional, polite, and fast. They repaired two doors, fixed the hardware, and gave honest advice on what could wait.”</blockquote>
+            <blockquote>“Two rental doors would not latch correctly. Windora repaired the hinges, adjusted the strike plates, and only replaced what was actually needed.”</blockquote>
             <div class="testimonial-meta">
               <strong>Elena V.</strong>
-              <span>Repeat customer</span>
+              <span>Rental property owner</span>
             </div>
           </article>
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“Great carpentry and trim work around our new windows. The measurements were precise and the finish matched the house beautifully.”</blockquote>
+            <blockquote>“The trim around our window had water damage. They repaired the wood, matched the finish, and left the area clean.”</blockquote>
             <div class="testimonial-meta">
               <strong>Marcus D.</strong>
               <span>Townhouse owner</span>
@@ -2378,10 +2784,10 @@
           </article>
           <article class="testimonial-card reveal">
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“A storefront panel was damaged after hours. Windora boarded it up quickly and helped us plan the permanent repair the next day.”</blockquote>
+            <blockquote>“A storefront glass panel broke after hours. Windora boarded the opening properly and gave us a clear plan for the permanent repair.”</blockquote>
             <div class="testimonial-meta">
               <strong>Sophia L.</strong>
-              <span>Busy parent</span>
+              <span>Small business owner</span>
             </div>
           </article>
         </div>
@@ -2475,7 +2881,7 @@
     <div class="container footer-grid">
       <div>
         <a href="#" class="logo" aria-label="Windora Entry Solutions home">
-          <img src="windora-logo-transparent.png" alt="Windora Entry Solutions" class="logo-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+          <img src="windora-logo-light.png" alt="Windora Entry Solutions" class="logo-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
           <span class="logo-fallback" hidden>Windora Entry Solutions</span>
         </a>
         <p>Door installation, window installation, glass repair, emergency board-up, carpentry, and home repair for Virginia and nearby areas.</p>
@@ -2643,24 +3049,58 @@
           };
         });
       });
+      var projectChangeToken = 0;
+
+      function preloadProjectImage(src) {
+        return new Promise(function (resolve) {
+          var image = new Image();
+          image.onload = resolve;
+          image.onerror = resolve;
+          image.src = src;
+        });
+      }
+
+      function applyProjectSlide(slide) {
+        beforePhoto.src = slide.before.src;
+        beforePhoto.alt = slide.before.caption;
+        afterPhoto.src = slide.after.src;
+        afterPhoto.alt = slide.after.caption;
+        beforeCaption.textContent = slide.before.caption;
+        afterCaption.textContent = slide.after.caption;
+        projectTitle.textContent = slide.title;
+        projectCounter.textContent = "Work " + (slide.projectIndex + 1) + " of " + projectWorks.length;
+      }
 
       function showProjectSlide(index) {
         var slide = projectSlides[index % projectSlides.length];
-        beforeCard.classList.add("is-changing");
-        afterCard.classList.add("is-changing");
+        var changeToken = ++projectChangeToken;
 
-        window.setTimeout(function () {
-          beforePhoto.src = slide.before.src;
-          beforePhoto.alt = slide.before.caption;
-          afterPhoto.src = slide.after.src;
-          afterPhoto.alt = slide.after.caption;
-          beforeCaption.textContent = slide.before.caption;
-          afterCaption.textContent = slide.after.caption;
-          projectTitle.textContent = slide.title;
-          projectCounter.textContent = "Work " + (slide.projectIndex + 1) + " of " + projectWorks.length;
-          beforeCard.classList.remove("is-changing");
-          afterCard.classList.remove("is-changing");
-        }, 220);
+        Promise.all([
+          preloadProjectImage(slide.before.src),
+          preloadProjectImage(slide.after.src)
+        ]).then(function () {
+          if (changeToken !== projectChangeToken) return;
+
+          if (reduceMotion) {
+            applyProjectSlide(slide);
+            return;
+          }
+
+          beforeCard.classList.add("is-changing");
+          afterCard.classList.add("is-changing");
+
+          window.setTimeout(function () {
+            if (changeToken !== projectChangeToken) return;
+
+            applyProjectSlide(slide);
+
+            window.requestAnimationFrame(function () {
+              if (changeToken !== projectChangeToken) return;
+              beforeCard.classList.remove("is-changing");
+              afterCard.classList.remove("is-changing");
+            });
+          }, 260);
+        });
       }
 
       var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

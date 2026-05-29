@@ -67,4 +67,4 @@ contact@windoraentrysolutions.com
 
 Add a more exact city or county later if you want stronger local SEO than statewide Virginia targeting.
 
-Also make sure `windora-logo-transparent.png` exists in this same folder, because `index.html` uses it for the header and footer logo.
+Also make sure `windora-logo-light.png` exists in this same folder, because `index.html` uses it for the header and footer logo.
